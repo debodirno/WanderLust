@@ -82,7 +82,7 @@
             <input type="text" name="adate" required autocomplete="off"/>
           </div>
                          
-          <input type="submit" name="action" value="Book for Rs. <%= request.getParameter("amt") %>" class="button button-block"/></button>
+          <input type="submit" name="action" value="Book for Rs. <%= request.getParameter("amt") %> / person" class="button button-block"/></button>
           
           </form>
         </div><!-- tab-content -->
