@@ -3,7 +3,15 @@
     Created on : Apr 2, 2017, 10:31:25 AM
     Author     : Debodirno
 --%>
-
+<%
+    if("auth".equals(session.getAttribute("userToken"))) {
+        response.sendRedirect("main.jsp");
+    }
+    else {
+        session.invalidate();
+        session = null;
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -49,7 +57,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="signup_login.jsp">Sign Up | Login</a></li>
+            <li><a href="signup_login.jsp">Login | Sign Up</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -62,7 +70,7 @@
               <a href="index.jsp"><img src="img/logo.png" alt="Logo"></a>
           </div>
           <div class="col-xs-6 signin text-right navbar-nav">
-            <a href="signup_login.jsp">Sign Up | Login</a>
+            <a href="signup_login.jsp">Login | Sign Up</a>
           </div>
         </div>
         
@@ -126,7 +134,7 @@
 									<p>Discover the masterpieces, palaces, frescoes, statues, cities of ancient wonder and the structures spread out across these nations.</p>
 								</div>
 								<ul>
-									<li><a href="europe.jsp">Book for Rs. 3,50,000</a></li>
+									<li><a href="1.jsp">Book for Rs. 3,50,000</a></li>
 								</ul>
 							</div>
 						</div>
@@ -149,7 +157,7 @@
 									<p>From the Great Wall to the impressive Terracotta Warriors, stroll among the Imperial treasures of Beijing and the cosmopolitan streets of Shanghai. You will see the most incredible highlights of China.</p>
 								</div>
 								<ul>
-									<li><a href="indiachina.jsp">Book for Rs. 2,75,000</a></li>
+									<li><a href="2.jsp">Book for Rs. 2,75,000</a></li>
 								</ul>
 							</div>
 						</div>
@@ -171,7 +179,7 @@
 									<p>Discover Asia and be fascinated by the beauty and diversity of cultures, while touring the three countries of Thailand, Malaysia and Singapore. From coastlines to historical monuments to modern cities, the tour offers amazing contrast prevalent in Asian countries. The tour includes ancient Buddha temples, Chinese temple, Historical Monuments, resorts and beautiful Gardens, and fun-filled activities. The tour covers historic town of Malacca, a UNESCO World Heritage Site.</p>
 								</div>
 								<ul>
-									<li><a href="fareastasia.jsp">Book for Rs. 1,00,000</a></li>
+									<li><a href="3.jsp">Book for Rs. 1,00,000</a></li>
 								</ul>
 							</div>
 						</div>
@@ -193,7 +201,7 @@
 									<p>The Caribbean is a region that consists of the Caribbean Sea, its islands (some surrounded by the Caribbean Sea and some bordering both the Caribbean Sea and the North Atlantic Ocean) and the surrounding coasts. The region is situated largely on the Caribbean Plate. Geopolitically, the Caribbean islands are usually regarded as a subregion of North America and are organized into 30 territories including sovereign states, overseas departments, and dependencies. The West Indies cricket team continues to represent many of those nations.</p>
 								</div>
 								<ul>
-									<li><a href="caribbean.jsp">Book for Rs. 1,50,000</a></li>
+									<li><a href="4.jsp">Book for Rs. 1,50,000</a></li>
 								</ul>
 							</div>
 						</div>

@@ -1,17 +1,114 @@
 <%-- 
-    Document   : index
-    Created on : Apr 2, 2017, 10:31:25 AM
+    Document   : main
+    Created on : Apr 4, 2017, 8:20:00 AM
     Author     : Debodirno
 --%>
+<%@ page import="java.sql.*" %>
 <%
-    if("auth".equals(session.getAttribute("userToken"))) {
-        response.sendRedirect("main.jsp");
+    Connection con = null;
+    PreparedStatement ps = null;
+    String query;
+    ResultSet rs = null;
+    
+    String action = request.getParameter("action");
+    if(action == null){
+        if(session == null)
+            response.sendRedirect("index.jsp");
+        else if(request.getSession(false) == null)
+            response.sendRedirect("index.jsp");
+        else if(session.getAttribute("userToken") == null || !(session.getAttribute("userToken").equals("auth")))
+            response.sendRedirect("index.jsp");
+        else
+            ;
     }
-    else {
-        session.invalidate();
-        session = null;
+    else if(action.equals("login")){
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wanderlust", "root", "mysqlpass");
+            query = "select * from record where email=? and password=?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                session = request.getSession();
+                session.setAttribute("userEmail", email);
+                session.setAttribute("userToken", "auth");
+//                out.println("<script type=\"text/javascript\">");
+//                out.println("alert('Email and Password match');");
+//                out.println("alert('Welcome " + session.getAttribute("userEmail") + "');");
+//                out.println("</script>");
+            }
+            else {
+                session.invalidate();
+                session = request.getSession();
+//                out.println("<script type=\"text/javascript\">");
+//                out.println("alert('Email and Password do not match');");
+//                out.println("</script>");
+                response.sendRedirect("index.jsp");
+            }
+        }catch(Exception e){
+            out.println(e);
+        }finally{
+            try{
+               if(ps!=null)
+                  ps.close();
+            }catch(SQLException se){
+            }
+            try{
+               if(con!=null)
+                  con.close();
+            }catch(SQLException se){
+               se.printStackTrace();
+            }
+            try{
+                if(rs!=null)
+                    rs.close();
+            }catch(SQLException se){
+            }
+        }
+    }
+    else if(action.equals("signup")){
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wanderlust", "root", "mysqlpass");
+            query = "insert into record values(?,?,?,?,0)";
+            ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ps.setString(3, fname);
+            ps.setString(4, lname);
+            ps.executeUpdate();
+            session = request.getSession();
+            session.setAttribute("userEmail", email);
+            session.setAttribute("userToken", "auth");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Welcome " + session.getAttribute("userEmail") + "');");
+            out.println("</script>");
+        }catch(Exception e){
+            out.println(e);
+        }finally{
+            try{
+               if(ps!=null)
+                  ps.close();
+            }catch(SQLException se){
+            }
+            try{
+               if(con!=null)
+                  con.close();
+            }catch(SQLException se){
+               se.printStackTrace();
+            }
+        }
     }
 %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -53,11 +150,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="logo" href="index.jsp"><img src="img/logo.png" alt="Logo" height="50px"></a>
+              <a class="logo" href="index.jsp"><img src="img/logo.png" alt="Logo" height="50px"></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="signup_login.jsp">Login | Sign Up</a></li>
+              <li><a href="logout.jsp">Logout : <%= session.getAttribute("userEmail") %></a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -70,7 +167,7 @@
               <a href="index.jsp"><img src="img/logo.png" alt="Logo"></a>
           </div>
           <div class="col-xs-6 signin text-right navbar-nav">
-            <a href="signup_login.jsp">Login | Sign Up</a>
+            <a href="logout.jsp">Logout : <%= session.getAttribute("userEmail") %></a>
           </div>
         </div>
         

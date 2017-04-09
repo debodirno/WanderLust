@@ -3,7 +3,15 @@
     Created on : Apr 2, 2017, 7:34:17 PM
     Author     : Debodirno
 --%>
-
+<%
+    if(session == null)
+        response.sendRedirect("signup_login.jsp");
+    else if(request.getSession(false) == null)
+        response.sendRedirect("signup_login.jsp");
+    else if(session.getAttribute("userToken") == null || !(session.getAttribute("userToken").equals("auth")))
+        response.sendRedirect("signup_login.jsp");
+    else {
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html >
@@ -15,12 +23,12 @@
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style3.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="img/favicon.ico">
   
 </head>
 
-<body>
+<body class="packages">
     <header>
         <div class="container">
         <div class="row">
@@ -33,10 +41,12 @@
             <img src="img/indiachina.gif" width="300px" align="left" style="margin: auto 10px 10px 0;">
         <p>The Indian subcontinent is huge and diverse, and it does not fail to cast a spell on anyone who travels through it. The subcontinent is perhaps the only destination in the World where in a two week holiday, you can do a high altitude trek, do a wildlife safari in a National Park, spend a night lazily cruising the backwaters, ride a Camel in the desert, spend time gazing at the Taj Mahal, and still have time to relax on a beach.</p>
 	<p>From the Great Wall to the impressive Terracotta Warriors, stroll among the Imperial treasures of Beijing and the cosmopolitan streets of Shanghai. You will see the most incredible highlights of China.</p>
-            <form action="/" method="post">
-                <button type="submit" class="button" style="display: block; margin: 0px auto; padding: 10px;"/>Book Now @ Rs. 3,50,000</button>
+            <form action="booking.jsp" method="get">
+                <input type="text" name="tname" value="The Indian Subcontinent and China Tour" style="display:  none;">
+                <input type="text" name="amt" value="2,75,000" style="display: none;">                
+                <button id="2" type="submit" class="button" value="The Indian Subcontinent and China Tour" style="display: block; margin: 0px auto; padding: 10px;"/>Book Now @ Rs. 2,75,000 / person</button>
           </form>
-        </div><!-- tab-content -->
+        </div>
       
 </div>
 </header><!-- /form -->
@@ -67,3 +77,4 @@
 
 </body>
 </html>
+<% } %>

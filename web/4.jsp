@@ -1,26 +1,34 @@
 <%-- 
-    Document   : fareastasia
-    Created on : Apr 2, 2017, 7:34:32 PM
+    Document   : caribbean
+    Created on : Apr 2, 2017, 7:34:39 PM
     Author     : Debodirno
 --%>
-
+<%
+    if(session == null)
+        response.sendRedirect("signup_login.jsp");
+    else if(request.getSession(false) == null)
+        response.sendRedirect("signup_login.jsp");
+    else if(session.getAttribute("userToken") == null || !(session.getAttribute("userToken").equals("auth")))
+        response.sendRedirect("signup_login.jsp");
+    else {
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Islands of Thailand, Malaysia and Singapore | WanderLust - The Ultimate Companion to Tourism</title>
+  <title>Caribbean Islands of Cuba, Haiti and Jamaica | WanderLust - The Ultimate Companion to Tourism</title>
   <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style3.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="img/favicon.ico">
   
 </head>
 
-<body>
+<body class="packages">
     <header>
         <div class="container">
         <div class="row">
@@ -29,11 +37,13 @@
           </div>
         </div>
         <div class="form">
-            <h3 style="margin-top: 0;">Islands of Thailand, Malaysia and Singapore</h3>
-            <img src="img/fareastasia.jpg" width="300px" align="left" style="margin: auto 10px 10px 0;">
-            <p>Discover Asia and be fascinated by the beauty and diversity of cultures, while touring the three countries of Thailand, Malaysia and Singapore. From coastlines to historical monuments to modern cities, the tour offers amazing contrast prevalent in Asian countries. The tour includes ancient Buddha temples, Chinese temple, Historical Monuments, resorts and beautiful Gardens, and fun-filled activities. The tour covers historic town of Malacca, a UNESCO World Heritage Site.</p>
-            <form action="/" method="post">
-                <button type="submit" class="button" style="display: block; margin: 0px auto; padding: 10px;"/>Book Now @ Rs. 1,00,000</button>
+            <h3 style="margin-top: 0;">Caribbean Islands of Cuba, Haiti and Jamaica</h3>
+            <img src="img/caribbean.jpg" width="300px" align="left" style="margin: auto 10px 10px 0;">
+            <p>The Caribbean is a region that consists of the Caribbean Sea, its islands (some surrounded by the Caribbean Sea and some bordering both the Caribbean Sea and the North Atlantic Ocean) and the surrounding coasts. The region is situated largely on the Caribbean Plate. Geopolitically, the Caribbean islands are usually regarded as a subregion of North America and are organized into 30 territories including sovereign states, overseas departments, and dependencies. The West Indies cricket team continues to represent many of those nations.</p>
+            <form action="booking.jsp" method="get">
+                <input type="text" name="tname" value="Caribbean Islands of Cuba, Haiti and Jamaica" style="display:  none;">
+                <input type="text" name="amt" value="1,50,000" style="display: none;">
+                <button id="4" type="submit" class="button" value="Caribbean Islands of Cuba, Haiti and Jamaica" style="display: block; margin: 0px auto; padding: 10px;"/>Book Now @ Rs. 1,50,000 / person</button>
           </form>
         </div><!-- tab-content -->
       
@@ -66,3 +76,4 @@
 
 </body>
 </html>
+<% } %>

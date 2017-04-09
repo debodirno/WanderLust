@@ -120,7 +120,10 @@
 }
 
 header {
-  margin: 20px 79.50px;
+  margin-top: 20px;
+  margin-left: 79.50px;
+  margin-right: 79.50px;
+  margin-bottom: -136px;
   padding: 20px 10px 60px 10px;
   height: 100%;
 /*  overflow: hidden;*/
@@ -130,8 +133,13 @@ header {
   -o-background-size: cover;
 }
 
+header:after {
+    content: "";
+    display: block;
+}
 html {
-  overflow-y: scroll;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 body {
@@ -274,7 +282,7 @@ textarea {
 }
 .top-row > div {
   float: left;
-  width: 48%;
+  width: 26%;
   margin-right: 4%;
 }
 .top-row > div:last-child {
@@ -305,7 +313,8 @@ textarea {
   width: 100%;
 }
 
-footer {
+footer, header:after {
+  height : 136px;
   width: 100%;
   background: #ffffff;
   padding: 40px 0px;
