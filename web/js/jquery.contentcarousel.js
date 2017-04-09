@@ -217,7 +217,7 @@
 							aux.navigate( -1, $el, $wrapper, settings, cache );
 						});
 						
-						setInterval(function(event){if( cache.isAnimating ) return false; cache.isAnimating = true; aux.navigate( -1, $el, $wrapper, settings, cache );},10000);
+						setInterval(function(event){if( cache.isAnimating ) return false; cache.isAnimating = true; aux.navigate( -1, $el, $wrapper, settings, cache );},15000);
 						
 						// navigate right
 						$navNext.bind('click.contentcarousel', function( event ) {
