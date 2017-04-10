@@ -43,7 +43,8 @@
 	<p>From the Great Wall to the impressive Terracotta Warriors, stroll among the Imperial treasures of Beijing and the cosmopolitan streets of Shanghai. You will see the most incredible highlights of China.</p>
             <form action="booking.jsp" method="get">
                 <input type="text" name="tname" value="The Indian Subcontinent and China Tour" style="display:  none;">
-                <input type="text" name="amt" value="2,75,000" style="display: none;">                
+                <input type="text" name="amt" value="2,75,000" style="display: none;"> 
+                <input type="text" name="idpackage" value="2" style="display: none;">               
                 <button id="2" type="submit" class="button" value="The Indian Subcontinent and China Tour" style="display: block; margin: 0px auto; padding: 10px;"/>Book Now @ Rs. 2,75,000 / person</button>
           </form>
         </div>

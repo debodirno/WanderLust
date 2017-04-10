@@ -43,6 +43,7 @@
             <form action="booking.jsp" method="get">
                 <input type="text" name="tname" value="Islands of Thailand, Malaysia and Singapore" style="display:  none;">
                 <input type="text" name="amt" value="1,00,000" style="display: none;">
+                <input type="text" name="idpackage" value="3" style="display: none;">
                 <button id="3" type="submit" class="button" value="Islands of Thailand, Malaysia and Singapore" style="display: block; margin: 0px auto; padding: 10px;"/>Book Now @ Rs. 1,00,000 / person</button>
           </form>
         </div><!-- tab-content -->

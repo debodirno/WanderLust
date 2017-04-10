@@ -42,6 +42,7 @@
             <form action="booking.jsp" method="get">
                 <input type="text" name="tname" value="Renaissance Tour in Italy, Spain, Portugal and France" style="display:  none;">
                 <input type="text" name="amt" value="3,50,000" style="display: none;">
+                <input type="text" name="idpackage" value="1" style="display: none;">
                 <button id="1" type="submit" class="button" value="Renaissance Tour in Italy, Spain, Portugal and France" style="display: block; margin: 0px auto; padding: 10px;"/>Book Now @ Rs. 3,50,000  / person</button>
           </form>
         </div><!-- tab-content -->

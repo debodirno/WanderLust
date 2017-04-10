@@ -78,19 +78,64 @@
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wanderlust", "root", "mysqlpass");
-            query = "insert into record values(?,?,?,?,0)";
+            
+            query = "select * from record where email=?";
             ps = con.prepareStatement(query);
             ps.setString(1, email);
-            ps.setString(2, password);
-            ps.setString(3, fname);
-            ps.setString(4, lname);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Email ID in use');");
+                out.println("</script>");
+                session.invalidate();
+                session = request.getSession();
+                response.sendRedirect("index.jsp");
+            }
+            else {
+                query = "insert into record values(?,?,?,?,0)";
+                ps = con.prepareStatement(query);
+                ps.setString(1, email);
+                ps.setString(2, password);
+                ps.setString(3, fname);
+                ps.setString(4, lname);
+                ps.executeUpdate();
+                session = request.getSession();
+                session.setAttribute("userEmail", email);
+                session.setAttribute("userToken", "auth");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Welcome " + session.getAttribute("userEmail") + "');");
+                out.println("</script>");
+            }
+        }catch(Exception e){
+            out.println(e);
+        }finally{
+            try{
+               if(ps!=null)
+                  ps.close();
+            }catch(SQLException se){
+            }
+            try{
+               if(con!=null)
+                  con.close();
+            }catch(SQLException se){
+               se.printStackTrace();
+            }
+        }
+    }
+    else if(action.equals("book")) {
+        String email = String.valueOf(session.getAttribute("userEmail"));
+        String bookid = request.getParameter("idbook");
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wanderlust", "root", "mysqlpass");
+            query = "update record set bookid=? where email=?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, Integer.parseInt(bookid));
+            ps.setString(2, email);
             ps.executeUpdate();
             session = request.getSession();
             session.setAttribute("userEmail", email);
             session.setAttribute("userToken", "auth");
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Welcome " + session.getAttribute("userEmail") + "');");
-            out.println("</script>");
         }catch(Exception e){
             out.println(e);
         }finally{

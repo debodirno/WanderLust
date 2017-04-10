@@ -43,6 +43,7 @@
             <form action="booking.jsp" method="get">
                 <input type="text" name="tname" value="Caribbean Islands of Cuba, Haiti and Jamaica" style="display:  none;">
                 <input type="text" name="amt" value="1,50,000" style="display: none;">
+                <input type="text" name="idpackage" value="4" style="display: none;">
                 <button id="4" type="submit" class="button" value="Caribbean Islands of Cuba, Haiti and Jamaica" style="display: block; margin: 0px auto; padding: 10px;"/>Book Now @ Rs. 1,50,000 / person</button>
           </form>
         </div><!-- tab-content -->

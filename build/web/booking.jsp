@@ -81,8 +81,8 @@
             </label>
             <input type="text" name="adate" required autocomplete="off"/>
           </div>
-                         
-          <input type="submit" name="action" value="Book for Rs. <%= request.getParameter("amt") %> / person" class="button button-block"/></button>
+                <input type="text" name="idbook" value="<%= request.getParameter("idpackage") %>" style="display: none;">              
+          <button type="submit" name="action" value="book" class="button button-block"/>Book for Rs. <%= request.getParameter("amt") %> / person</button>
           
           </form>
         </div><!-- tab-content -->
