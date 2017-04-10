@@ -55,7 +55,7 @@
         <div class="row">
           <div class="col-sm-8 margin-20">
             <ul class="list-inline social">
-              <li>Connect with us on</li>
+              <li>Connect with me on</li>
               <li><a href="https://twitter.com/DebodirnoC"><i class="fa fa-twitter"></i></a></li>
               <li><a href="https://www.facebook.com/debodirno"><i class="fa fa-facebook"></i></a></li>
               <li><a href="https://www.instagram.com/me.debodirno/"><i class="fa fa-instagram"></i></a></li>
