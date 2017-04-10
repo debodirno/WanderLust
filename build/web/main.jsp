@@ -136,6 +136,9 @@
             session = request.getSession();
             session.setAttribute("userEmail", email);
             session.setAttribute("userToken", "auth");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Booked " + bookid + " ');");
+            out.println("</script>");
         }catch(Exception e){
             out.println(e);
         }finally{
